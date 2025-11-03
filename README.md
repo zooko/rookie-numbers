@@ -8,6 +8,29 @@ meaningful AIR implementations.
 
 ## How to run
 
+### Setup
+
+- Make sure you have the correct toolchain installed.
+
+```bash
+rustup toolchain install nightly-2025-07-14
+```
+
+- Linter and formatter [trunk](https://trunk.io/)
+
+- Stwo submodule
+
+```bash
+git submodule update --init --recursive
+```
+
+- Check everything is working
+
+```bash
+cargo b -r
+trunk check --all
+```
+
 ### Theoretical maximum frequency benchmarks
 
 ```bash
