@@ -16,6 +16,7 @@ words:
   - logup
   - merkle
   - metavar
+  - mimalloc
   - mult
   - papini
   - pext

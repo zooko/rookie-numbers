@@ -11,6 +11,19 @@ pub mod partitions;
 pub mod preprocessed;
 pub mod relations;
 pub mod sha256;
+
+#[cfg(feature = "smalloc")]
+use smalloc::Smalloc;
+#[cfg(feature = "smalloc")]
+#[global_allocator]
+static GLOBAL: Smalloc = Smalloc::new();
+
+#[cfg(feature = "smalloc")]
+#[ctor::ctor]
+unsafe fn init_smalloc() {
+    GLOBAL.init();
+}
+
 #[cfg(feature = "peak-alloc")]
 use peak_alloc::PeakAlloc;
 use stwo::prover::backend::Column;
