@@ -1,0 +1,31 @@
+version: "0.2"
+suggestionsTimeout: 5000
+words:
+  - bitmask
+  - bytemuck
+  - clippy
+  - elems
+  - evals
+  - hashbrown
+  - ilog
+  - iproduct
+  - itertools
+  - jemalloc
+  - jemallocator
+  - logicalcpu
+  - logup
+  - merkle
+  - metavar
+  - mult
+  - papini
+  - pext
+  - repr
+  - rotr
+  - rustflags
+  - rustsec
+  - rustup
+  - serde
+  - shahar
+  - stwo
+  - thiserror
+  - tikv

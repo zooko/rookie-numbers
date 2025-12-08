@@ -6,13 +6,12 @@ use stwo::{
         channel::MerkleChannel,
         fields::{m31::BaseField, qm31::SecureField},
         pcs::TreeVec,
-        poly::circle::CanonicCoset,
         ColumnVec,
     },
     prover::{
         backend::{
             simd::{m31::LOG_N_LANES, SimdBackend},
-            BackendForChannel, Column,
+            BackendForChannel,
         },
         poly::{circle::CircleEvaluation, BitReversedOrder},
         CommitmentSchemeProver, ComponentProver,
@@ -178,15 +177,10 @@ impl Components {
     where
         SimdBackend: BackendForChannel<MC>,
     {
-        let evals = commitment_scheme.trace().polys.map(|tree| {
-            tree.iter()
-                .map(|poly| {
-                    poly.evaluate(CanonicCoset::new(poly.log_size()).circle_domain())
-                        .values
-                        .to_cpu()
-                })
-                .collect()
-        });
+        let evals = commitment_scheme
+            .trace()
+            .polys
+            .map(|tree| tree.iter().map(|poly| poly.evals.to_cpu().values).collect());
         let evals = &evals.as_ref();
         let trace = &evals.into();
 

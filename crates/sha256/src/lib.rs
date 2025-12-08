@@ -11,9 +11,9 @@ pub mod partitions;
 pub mod preprocessed;
 pub mod relations;
 pub mod sha256;
-
 #[cfg(feature = "peak-alloc")]
 use peak_alloc::PeakAlloc;
+use stwo::prover::backend::Column;
 #[cfg(feature = "peak-alloc")]
 #[global_allocator]
 static PEAK_ALLOC: PeakAlloc = PeakAlloc;
@@ -100,15 +100,15 @@ pub fn prove_sha256(log_size: u32, config: PcsConfig) -> StarkProof<Blake2sMerkl
         commitment_scheme
             .trees
             .as_ref()
-            .map(|tree| tree.evaluations.len())
+            .map(|tree| tree.polynomials.len())
     );
     debug!(
         "Columns length: {:?}",
         commitment_scheme.trees.as_ref().map(|tree| {
             let max_len = tree
-                .evaluations
+                .polynomials
                 .iter()
-                .map(|eval| eval.values.length.ilog2())
+                .map(|poly| poly.evals.values.len().ilog2())
                 .collect::<Vec<_>>()
                 .iter()
                 .copied()

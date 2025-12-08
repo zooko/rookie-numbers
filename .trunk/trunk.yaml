@@ -27,6 +27,7 @@ lint:
             --no-deps -D warnings -D unused_imports
       run_timeout: 20m
   enabled:
+    - cspell@9.4.0
     - black@25.9.0
     - checkov@3.2.489
     - isort@7.0.0
