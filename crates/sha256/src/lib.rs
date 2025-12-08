@@ -28,6 +28,12 @@ use tikv_jemallocator::Jemalloc;
 #[global_allocator]
 static GLOBAL: Jemalloc = Jemalloc;
 
+#[cfg(feature = "mimalloc")]
+use mimalloc::MiMalloc;
+#[cfg(feature = "mimalloc")]
+#[global_allocator]
+static GLOBAL: MiMalloc = MiMalloc;
+
 use num_traits::Zero;
 use stwo::{
     core::{
