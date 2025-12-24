@@ -15,15 +15,16 @@ serde_json.workspace = true
 bincode.workspace = true
 itertools.workspace = true
 test-log.workspace = true
-peak_alloc = { workspace = true, optional = true }
-tikv-jemallocator = { workspace = true, optional = true }
 rayon.workspace = true
 sha2.workspace = true
 utils.workspace = true
-smalloc = { version = "7.0.1", git = "https://github.com/zooko/smalloc", optional = true }
-mimalloc = { version = "*", features = ["v3"], optional = true }
-# smalloc = { version = "6.0.3", path = "../../../smalloc-6.0.3/smalloc", optional = true }
-ctor = { version = "0.2", optional = true }
+tikv-jemallocator = { workspace = true, optional = true }
+peak_alloc = { workspace = true, optional = true }
+smalloc = { workspace = true, optional = true }
+mimalloc = { workspace = true, optional = true }
+ctor = { workspace = true, optional = true }
+snmalloc-rs = { workspace = true, optional = true }
+rpmalloc = { workspace = true, optional = true }
 
 [dev-dependencies]
 divan.workspace = true
@@ -38,7 +39,9 @@ slow-tests = []
 parallel = ["stwo/parallel", "stwo-constraint-framework/parallel"]
 track-relations = []
 default = []
-peak-alloc = ["peak_alloc"]
-jemalloc = ["tikv-jemallocator"]
+peak-alloc = ["dep:peak_alloc"]
+jemalloc = ["dep:tikv-jemallocator"]
 mimalloc = ["dep:mimalloc"]
-smalloc = ["dep:smalloc", "ctor"]
+smalloc = ["dep:smalloc", "dep:ctor"]
+rpmalloc = ["dep:rpmalloc"]
+snmalloc = ["dep:snmalloc-rs"]
